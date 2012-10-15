@@ -1,0 +1,85 @@
+
+
+ <head>
+    <title>CIS196 Homework2 by Ying Pan</title>
+    <style type="text/css" media="screen">
+      body {
+        margin: 0;
+		margin-left: 50px;
+        margin-bottom: 25px;
+        padding: 0;
+        background-color: #E3B3C6;
+        font-family: "Lucida Grande", "Bitstream Vera Sans", "Verdana";
+        font-size: 13px;
+        color: #333;
+      }
+
+      h1 {
+        font-size: 28px;
+        color: #000;
+      }
+
+      a  {color: #03c}
+      a:hover {
+        background-color: #9D25CC;
+        color: white;
+        text-decoration: none;
+      }
+	  
+	  .largeinput {
+		width: 500px;
+		height: 200px;
+		margin: 10px;
+	  }
+	  .smallinput{
+		margin:10px;
+	  
+	  }
+
+    </style>
+    <script type="text/javascript">
+    </script>
+  </head>
+<h1>Editing post</h1>
+ 
+<%= form_for :post, :url => { :action => :update, :id => @post.id },
+:method => :put do |f| %>
+  <% if @post.errors.any? %>
+  <div id="errorExplanation">
+    <h2><%= pluralize(@post.errors.count, "error") %> prohibited
+      this post from being saved:</h2>
+    <ul>
+    <% @post.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+  <% end %>
+  <p>
+    <%= f.label :title %><br>
+    <%= f.text_field :title %>
+  </p>
+ 
+  <p>
+    <%= f.label :text %><br>
+    <%= f.text_area :text %>
+  </p>
+ 
+  <p>
+	<% moods = ["Excited", "Happy", "Normal", "Disappointed" , "Angry", "Sad" ]%>
+	
+	<select id="post_mood" name="post[mood]">
+	<% moods.each do |item| %>
+		<option value = "<%= item%>">
+			<%= item%>
+		</option>
+		<% end %>
+	</select>  
+  </p>
+ 
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>
+ 
+<%= link_to 'Back', :action => :index %>

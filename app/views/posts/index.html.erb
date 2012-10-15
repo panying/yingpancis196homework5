@@ -1,0 +1,62 @@
+ <head>
+    <title>CIS196 Homework2 by Ying Pan</title>
+    <style type="text/css" media="screen">
+      body {
+        margin: 0;
+		margin-left: 50px;
+        margin-bottom: 25px;
+        padding: 0;
+        background-color: #E3B3C6;
+        font-family: "Lucida Grande", "Bitstream Vera Sans", "Verdana";
+        font-size: 13px;
+        color: #333;
+      }
+
+      h1 {
+        font-size: 28px;
+        color: #000;
+      }
+
+      a  {color: #03c}
+      a:hover {
+        background-color: #9D25CC;
+        color: white;
+        text-decoration: none;
+      }
+	  
+	  .largeinput {
+		width: 500px;
+		height: 200px;
+		margin: 10px;
+	  }
+	  .smallinput{
+		margin:10px;
+	  
+	  }
+
+    </style>
+    <script type="text/javascript">
+    </script>
+  </head>
+
+<h1>Listing posts</h1>
+ 
+<table>
+  <tr>
+	<th>Mood</th>
+    <th>Title</th>
+    <th>Text</th>
+  </tr>
+ 
+  <% @posts.each do |post| %>
+    <tr>
+	  <td><%= post.mood %></td>
+      <td><%= post.title %></td>
+      <td><%= post.text %></td>
+	  <td><%= link_to 'Show', :action => :show, :id => post.id %></td>
+	  <td><%= link_to 'Edit', :action => :edit, :id => post.id %></td>
+    </tr>
+  <% end %>
+</table>
+
+<%= link_to 'Create Your Message', :action => :new %>
